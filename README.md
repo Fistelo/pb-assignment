@@ -7,6 +7,10 @@ PostgreSQL database with configuration matching the application specs can be fou
 The Spring Boot application can be run by using command `mvn spring-boot:run`.
 The server is starting on port 8080.
 
+## Testing
+
+Sample API tests along with github service tests are written in the test module. To run them, invoke a method `mvn test`.
+
 ## Test API manually
 
 For manual testing purposes project contains a postman collection of available requests.
