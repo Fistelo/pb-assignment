@@ -1,0 +1,13 @@
+version: "2"
+services:
+  database:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_DB=productboard-db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5432:5432
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
