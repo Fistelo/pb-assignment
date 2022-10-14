@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.rds.pbrecruitment.errors.ApiError.RESOURCE_NOT_FOUND;
@@ -25,14 +26,14 @@ public class LanguageStatisticsService {
     private final GitRepoRepository gitRepoRepository;
     private final LanguageStatsRepository languageStatsRepository;
 
-    public Object getLatestLanguageStatsByRepoId(final long id) {
+    public Map<String, Float> getLatestLanguageStatsByRepoId(final long id) {
         final LanguageStatistics statistics = languageStatsRepository.findFirstByGitRepoIdOrderByCreatedAtDesc(id)
                 .orElseThrow(() -> new ApiException(RESOURCE_NOT_FOUND));
 
         return statistics.getPercentage();
     }
 
-    public Object getLatestLanguageStatsByRepoName(final String name) {
+    public Map<String, Float> getLatestLanguageStatsByRepoName(final String name) {
         final LanguageStatistics statistics = languageStatsRepository.findFirstByGitRepoNameOrderByCreatedAtDesc(name)
                 .orElseThrow(() -> new ApiException(RESOURCE_NOT_FOUND));
 
@@ -54,5 +55,9 @@ public class LanguageStatisticsService {
         }
 
         gitRepoRepository.saveAll(repos_for_batch_update);
+    }
+
+    public GitRepo saveRepo(final GitRepo repo) {
+        return gitRepoRepository.save(repo);
     }
 }

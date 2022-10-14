@@ -25,7 +25,7 @@ public class AppConfig {
             return new GitHubBuilder().build();
         }
 
-        log.info("Running app with Github token " + githubToken);
+        log.info("Running app with Github token");
         return new GitHubBuilder()
                 .withJwtToken(githubToken)
                 .build();

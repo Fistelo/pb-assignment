@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,11 +21,15 @@ import static com.rds.pbrecruitment.errors.ApiError.GITHUB_API_FAILED;
 @Service
 @RequiredArgsConstructor
 public class GithubFetchingService {
+    static final String PB_ORGANIZATION_NAME = "productboard";
 
     private final LanguageStatisticsService languageStatisticsService;
     private final GitHub githubApi;
 
-    private static final String PB_ORGANIZATION_NAME = "productboard";
+    @Scheduled(cron = "0 0 0 ? * *")
+    public void fetchGithubStatisticsEveryday() {
+        fetchData();
+    }
 
     public void fetchData() {
         try {

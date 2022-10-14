@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "5b8320ac-e8ad-43df-9755-fd3461dde281",
+		"name": "productboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Fetch data bypassing CRON",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/repos/force_fetch_data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"repos",
+						"force_fetch_data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get by repo name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Get by repo DB ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/repos/1/language_stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"repos",
+						"1",
+						"language_stats"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

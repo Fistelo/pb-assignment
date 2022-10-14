@@ -5,6 +5,8 @@ import com.rds.pbrecruitment.services.LanguageStatisticsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping(GitRepoController.GIT_REPOS_PATH)
 @RequiredArgsConstructor
@@ -15,12 +17,12 @@ public class GitRepoController {
     private final GithubFetchingService githubFetchingService;
 
     @GetMapping("/{id}/language_stats")
-    public Object fetchGitRepoLanguageStatsById(@PathVariable final long id) {
+    public Map<String, Float> fetchGitRepoLanguageStatsById(@PathVariable final long id) {
         return langStatisticsService.getLatestLanguageStatsByRepoId(id);
     }
 
     @GetMapping("/language_stats")
-    public Object fetchGitRepoLanguageStatsById(@RequestParam final String repo_name) {
+    public Map<String, Float> fetchGitRepoLanguageStatsByName(@RequestParam final String repo_name) {
         return langStatisticsService.getLatestLanguageStatsByRepoName(repo_name);
     }
 
